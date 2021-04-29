@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <script src='https://code.jquery.com/jquery-1.12.3.js'></script>
+  <script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css"
+    integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
+</head>
+
+<body>
+  <a href="{{url_for('home')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Back</a>
+  <div class="container">
+    <table class="table table-bordered" id="table" data-toggle="table" data-pagination="true"
+      data-page-list="[10, 25, 50, 100, all]" data-height="400" data-pagination-pre-text="Previous"
+      data-pagination-next-text="Next">
+      <thead>
+        <tr>
+          <th scope="col">Bracket ID</th>
+          <th scope="col">Upsets Predicted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in upsets%}
+        <tr>
+          <th scope="row">{{entry[1]}}</th>
+          <th>{{entry[0]}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

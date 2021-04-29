@@ -1,0 +1,128 @@
+<html>
+
+<head>
+  <script src='https://code.jquery.com/jquery-1.12.3.js'></script>
+  <script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css"
+    integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
+</head>
+
+<body>
+
+  <h1>Predictions</h1>
+  <p>Search for a Prediction here!</p>
+  <form action="{{ url_for('zsearch')}}" method="POST">
+    <div class="form-group">
+      <input type="text" name="keyword" placeholder="Enter team to search for">
+      <input type="number" name="Limit" placeholder="Enter the number of predictions you want to see">
+      <button type="submit" class="btn btn-primary mb-2">Search</button>
+    </div>
+  </form>
+
+  Create Your Own Prediction!
+  <form action="{{url_for('zcreate')}}" method="POST">
+    <input type="number" name="Team1ID" placeholder="Enter team 1 ID" id="team1input">
+    <input type="number" name="Team2ID" placeholder="Enter team 2 ID" id="team2input">
+    <input type="number" name="WinnerID" placeholder="Enter winner ID" id="winnerinput">
+    <input type="number" name="Round" placeholder="Round" id="roundinput">
+    <input type="number" name="BracketID" placeholder="Enter Bracket ID" id="bracketIDinput">
+    <button type="submit" class="btn btn-primary mb-2">Create</button>
+  </form>
+
+  Delete a Prediction
+  <form action="{{url_for('zdelete')}}" method="POST">
+    <input type="number" name="PredictionID" placeholder="Enter PredictionID to delete" id="predtodelete">
+    <button type="submit" class="btn btn-primary mb-2">Delete</button>
+  </form>
+
+  Update the winner of a Prediction:
+  <form action="{{url_for('zupdate')}}" method="POST">
+    <input type="number" name="PredictionID" placeholder="Enter PredictionID to update" id="predtoupdate">
+    <input type="number" name="WinnerID" placeholder="Enter winner ID" id="winnerupdateinput">
+    <button type="submit" class="btn btn-primary mb-2">Update</button>
+  </form>
+
+  View brackets with the most upsets!
+  Update the winner of a Prediction:
+  <form action="{{url_for('zupsets')}}" method="POST">
+    <input type="number" name="Limit" placeholder="Enter the number of brackets you want to see">
+    <button type="submit" class="btn btn-primary mb-2">Get Upsets</button>
+  </form>
+
+  Team IDs:<br>
+  Michigan: 0<br>
+  Baylor: 1<br>
+  Illinois: 2<br>
+  Gonzaga: 3<br>
+  Iowa: 4<br>
+  Ohio St.: 5<br>
+  Houston: 6<br>
+  Alabama: 7<br>
+  West Virginia: 8<br>
+  Texas: 9<br>
+  Kansas: 10<br>
+  Arkansas: 11<br>
+  Florida St.: 12<br>
+  Virginia: 13<br>
+  Purdue: 14<br>
+  Oklahoma St.: 15<br>
+  Villanova: 16<br>
+  Tennessee: 17<br>
+  Creighton: 18<br>
+  Colorado: 19<br>
+  Texas Tech: 20<br>
+  BYU: 21<br>
+  USC: 22<br>
+  San Diego St.: 23<br>
+  Florida: 24<br>
+  Connecticut: 25<br>
+  Clemson: 26<br>
+  Oregon: 27<br>
+  Oklahoma: 28<br>
+  North Carolina: 29<br>
+  LSU: 30<br>
+  Loyola Chicago: 31<br>
+  St. Bonaventure: 32<br>
+  Missouri: 33<br>
+  Wisconsin: 34<br>
+  Georgia Tech: 35<br>
+  Rutgers: 36<br>
+  Virginia Tech: 37<br>
+  Maryland: 38<br>
+  VCU: 39<br>
+  Michigan St.: 40<br>
+  Wichita St.: 41<br>
+  Syracuse: 42<br>
+  UCLA: 43<br>
+  Utah St.: 44<br>
+  Drake: 45<br>
+  Georgetown: 46<br>
+  Oregon St.: 47<br>
+  UC Santa Barbara: 48<br>
+  Winthrop: 49<br>
+  Ohio: 50<br>
+  North Texas: 51<br>
+  UNC Greensboro: 52<br>
+  Liberty: 53<br>
+  Colgate: 54<br>
+  Eastern Washington: 55<br>
+  Abilene Christian: 56<br>
+  Morehead St.: 57<br>
+  Iona: 58<br>
+  Oral Roberts: 59<br>
+  Grand Canyon: 60<br>
+  Cleveland St.: 61<br>
+  Drexel: 62<br>
+  Mount St. Mary's: 63<br>
+  Hartford: 64<br>
+  Norfolk St.: 65<br>
+  Texas Southern: 66<br>
+  Appalachian St.: 67<br>
+</body>
+
+</html>

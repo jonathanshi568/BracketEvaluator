@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>March Madness Teams</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/custom.css') }}">
+
+</head>
+
+<body>
+
+  <main role="main" class="container extra-bottom">
+    <h1 class="mt-5">NCAA Teams</h1>
+  </main>
+
+  <div class="container table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="team-id">Team 1 Seed</th>
+          <th class="team-name">Team 1 Name</th>
+          <th class="conference">Team 2 Seed</th>
+          <th class="games-played">Team 2 Name</th>
+          <th class="wins">Team 1 Score</th>
+          <th class="score">Team 2 Score</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for team in teams %}
+        <tr>
+          <td>{{team.Team1Seed}}</td>
+          <td>{{team.Team1Name}}</td>
+          <td>{{team.Team2Seed}}</td>
+          <td>{{team.Team2Name}}</td>
+          <td>{{team.Team1Score}}</td>
+          <td>{{team.Team2Score}}</td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+
+</html>
