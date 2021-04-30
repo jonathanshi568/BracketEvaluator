@@ -54,6 +54,7 @@ $(document).ready(function () {
 
     $('.remove').click(function () {
         const remove = $(this)
+        console.log('wtffff')
         $.ajax({
             type: 'POST',
             url: '/brackets/delete/' + remove.data('source'),
