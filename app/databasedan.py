@@ -8,6 +8,27 @@ def fetch_matches() -> dict:
     """
 
     conn = db.connect()
+    conn.execute("DELIMITER // create trigger update_wins after insert on matches for each row
+                    begin
+                    if new.Team1Score > new.Team2Score then
+                        update teams
+                        set GamesPlayed = GamesPlayed + 1, Wins = Wins + 1
+                        where ID = new.Team1ID;
+                        update teams
+                        set GamesPlayed = GamesPlayed + 1
+                        where ID = new.Team2ID;
+                    end if;
+                    if new.Team1Score < new.Team2Score then
+                        update teams
+                        set GamesPlayed = GamesPlayed + 1, Wins = Wins + 1
+                        where ID = new.Team2ID;
+                        update teams
+                        set GamesPlayed = GamesPlayed + 1
+                        where ID = new.Team1ID;
+                    end if;
+                    end//
+                    DELIMITER ;")
+
     query_results = conn.execute("Select * from matches;").fetchall()
     conn.close()
     match_list = []
