@@ -5,7 +5,7 @@ from app import app
 from app import databasedan as db_helper
 
 @app.route("/matches/delete/<int:task_id>", methods=['POST'])
-def delete(task_id):
+def ddelete(task_id):
     """ recieved post requests for entry delete """
 
     try:
@@ -18,7 +18,7 @@ def delete(task_id):
 
 
 @app.route("/matches/edit/<int:task_id>", methods=['POST'])
-def update(task_id):
+def dupdate(task_id):
     """ recieved post requests for entry updates """
 
     data = request.get_json()
@@ -39,7 +39,7 @@ def update(task_id):
 
 
 @app.route("/matches/create", methods=['POST'])
-def create():
+def dcreate():
     """ recieves post requests to add new task """
     data = request.get_json()
     db_helper.insert_new_match(data['t1id'], data['t2id'], data['t1score'], data['t2score'])
@@ -48,14 +48,14 @@ def create():
 
 
 @app.route("/dan")
-def homepage():
+def dhomepage():
     """ returns rendered homepage """
     items = db_helper.fetch_matches()
     return render_template("indexdan.html", items=items)
 
 
 @app.route("/matches/search/<int:team_id>", methods=['POST','GET'])
-def search(team_id):
+def dsearch(team_id):
     data = request.get_json()
     items = db_helper.fetch_by_keyword(team_id)
     return render_template("indexdan.html", items=items)

@@ -5,6 +5,8 @@ env_variables:
   MYSQL_PASSWORD: gunnjvgirls
   MYSQL_DB: bballdb
   MYSQL_HOST: 34.121.178.35
+  DB_SOCKET_DIR: /cloudsql
+  CLOUD_SQL_CONNECTION_NAME: bracketevaluator:us-central1:bracketevaluatordb
 handlers:
 - url: /script
   static_dir: static/script

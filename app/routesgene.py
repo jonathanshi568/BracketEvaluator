@@ -4,7 +4,7 @@ from app import app
 from app import databasegene as db_helper
 
 @app.route("/brackets/delete/<int:task_id>", methods=['POST'])
-def delete(task_id):
+def gdelete(task_id):
     """ recieved post requests for entry delete """
 
     try:
@@ -17,7 +17,7 @@ def delete(task_id):
 
 
 @app.route("/brackets/edit/<int:task_id>", methods=['POST'])
-def update(task_id):
+def gupdate(task_id):
     """ recieved post requests for entry updates """
 
     data = request.get_json()
@@ -38,7 +38,7 @@ def update(task_id):
 
 
 @app.route("/brackets/create", methods=['POST'])
-def create():
+def gcreate():
     """ recieves post requests to add new task """
     data = request.get_json()
     db_helper.insert_new_task(data['description'], data['user-id'])
@@ -47,19 +47,19 @@ def create():
 
 
 @app.route("/gene")
-def homepage():
+def ghomepage():
     """ returns rendered homepage """
     items = db_helper.fetch_todo()
     return render_template("indexgene.html", items=items)
 
 
 @app.route("/brackets/search/<string:keyword>", methods=['POST','GET'])
-def search(keyword):
+def gsearch(keyword):
     items = db_helper.fetch_some(keyword)
     return render_template("indexgene.html", items=items)
 
 @app.route("/numbracketswinners/", methods=['POST','GET'])
-def winners():
+def gwinners():
     items = db_helper.get_winners()
     return render_template("index2gene.html", items=items)
     #result = {'success': True, 'response': items}

@@ -56,7 +56,7 @@ def homepage():
     items = {}
     return render_template("index.html", items=items)
 
-@app.route("/home")
+@app.route("/predictions")
 def home():
     return render_template("zuhairindex.html")
 
@@ -72,7 +72,6 @@ def zsearch():
     team2 = [id_dict[res[2]] for res in results]
     winners = [id_dict[res[3]] for res in results]
     rounds = [res[4] for res in results]
-    print(rounds[:5])
     return render_template('zuhairsearchresults.html', type = type, preds = zip(ids, team1, team2, winners, rounds))
 
 @app.route("/create", methods = ["POST"])
@@ -83,7 +82,7 @@ def zcreate():
     BracketID = request.form['BracketID']
     Round = request.form['Round']
     cur = mysql.connection.cursor()
-    query_str = "INSERT INTO Predictions(Team1ID, Team2ID, WinnerID, Round, BracketID) VALUES({}, {}, {}, {}, {})".format(Team1ID, Team2ID, WinnerID, Round, BracketID)
+    query_str = "INSERT INTO predictions(Team1ID, Team2ID, WinnerID, Round, BracketID) VALUES({}, {}, {}, {}, {})".format(Team1ID, Team2ID, WinnerID, Round, BracketID)
     cur.execute(query_str)
     mysql.connection.commit()
     return render_template("zuhairindex.html")
@@ -92,7 +91,7 @@ def zcreate():
 def zdelete():
     PredictionID = request.form['PredictionID']
     cur = mysql.connection.cursor()
-    query_str = "DELETE FROM Predictions WHERE PredictionID={}".format(PredictionID)
+    query_str = "DELETE FROM predictions WHERE PredictionID={}".format(PredictionID)
     cur.execute(query_str)
     mysql.connection.commit()
     return render_template("zuhairindex.html")
@@ -102,7 +101,7 @@ def zupdate():
     PredictionID = request.form['PredictionID']
     WinnerID = request.form['WinnerID']
     cur = mysql.connection.cursor()
-    query_str = "UPDATE Predictions SET WinnerID={} WHERE PredictionID={}".format(WinnerID, PredictionID)
+    query_str = "UPDATE predictions SET WinnerID={} WHERE PredictionID={}".format(WinnerID, PredictionID)
     cur.execute(query_str)
     mysql.connection.commit()
     return render_template("zuhairindex.html")
@@ -118,3 +117,5 @@ def zupsets():
     cur.execute(query_str)
     results = cur.fetchall()
     return render_template('zuhairupsets.html', upsets = results)
+
+

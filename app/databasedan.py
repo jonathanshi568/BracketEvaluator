@@ -8,7 +8,7 @@ def fetch_matches() -> dict:
     """
 
     conn = db.connect()
-    query_results = conn.execute("Select * from Matches;").fetchall()
+    query_results = conn.execute("Select * from matches;").fetchall()
     conn.close()
     match_list = []
     for result in query_results:
@@ -62,7 +62,7 @@ def update_match_entry(task_id: int, text: str) -> None:
     """
 
     conn = db.connect()
-    query = 'Update Matches set Team1Score = {} where MatchID = {};'.format(int(text), task_id)
+    query = 'Update matches set Team1Score = {} where MatchID = {};'.format(int(text), task_id)
     conn.execute(query)
     conn.close()
 
@@ -90,10 +90,10 @@ def insert_new_match(t1score: str, t2score: str, t1id: str, t2id: str) ->  int:
     """
 
     conn = db.connect()
-    query_results = conn.execute("select MAX(MatchID) from Matches")
+    query_results = conn.execute("select MAX(MatchID) from matches")
     query_results = [x for x in query_results]
     task_id = query_results[0][-1] + 1
-    query = 'Insert Into Matches (Team1ID, Team2ID, Team1Score, Team2Score, T1FG, T1FGA, T13P, T13PA, T1FT, T1FTA, T1ORB, T1DRB, T1AST, T1STL, T1BLK, T1TOV, T1PF, T2FG, T2FGA, T23P, T23PA, T2FT, T2FTA, T2ORB, T2DRB, T2AST, T2STL, T2BLK, T2TOV, T2PF, MatchID) VALUES ({}, {}, {}, {}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {});'.format(
+    query = 'Insert Into matches (Team1ID, Team2ID, Team1Score, Team2Score, T1FG, T1FGA, T13P, T13PA, T1FT, T1FTA, T1ORB, T1DRB, T1AST, T1STL, T1BLK, T1TOV, T1PF, T2FG, T2FGA, T23P, T23PA, T2FT, T2FTA, T2ORB, T2DRB, T2AST, T2STL, T2BLK, T2TOV, T2PF, MatchID) VALUES ({}, {}, {}, {}, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {});'.format(
         int(t1id), int(t2id), int(t1score), int(t2score), task_id)
     conn.execute(query)
     conn.close()
@@ -104,7 +104,7 @@ def insert_new_match(t1score: str, t2score: str, t1id: str, t2id: str) ->  int:
 def remove_match_by_id(task_id: int) -> None:
     """ remove entries based on task ID """
     conn = db.connect()
-    query = 'Delete From Matches where MatchID={};'.format(task_id)
+    query = 'Delete From matches where MatchID={};'.format(task_id)
     conn.execute(query)
     conn.close()
 
@@ -115,7 +115,7 @@ def fetch_by_keyword(teamid: int) -> dict:
     """
 
     conn = db.connect()
-    query_results = conn.execute("Select * from Matches where Team1ID={};".format(teamid))
+    query_results = conn.execute("Select * from matches where Team1ID={};".format(teamid))
     conn.close()
     match_list = []
     for result in query_results:
@@ -160,7 +160,7 @@ def fetch_by_keyword(teamid: int) -> dict:
 
 def get_wl_diffs() -> dict:
     conn = db.connect()
-    query = "SELECT Team, sum(ifnull(diff1,0) + ifnull(diff2,0)) as win_lose_diff FROM ((select Team1ID as Team, avg(Team1Score - Team2Score) as diff1, null as diff2 from Matches group by Team1ID) UNION (select Team2Id as Team2, null, avg(Team2Score - Team1Score) as diff2 from Matches group by Team2ID)) B GROUP  BY Team ORDER BY Team;"
+    query = "SELECT Team, sum(ifnull(diff1,0) + ifnull(diff2,0)) as win_lose_diff FROM ((select Team1ID as Team, avg(Team1Score - Team2Score) as diff1, null as diff2 from matches group by Team1ID) UNION (select Team2Id as Team2, null, avg(Team2Score - Team1Score) as diff2 from matches group by Team2ID)) B GROUP  BY Team ORDER BY Team;"
 
     query_results = conn.execute(query).fetchall()
     conn.close()

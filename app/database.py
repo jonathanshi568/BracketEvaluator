@@ -19,7 +19,7 @@ def fetch_teams() -> dict:
 
 def update_team_entry(team_id: int, team_name: str, conference: str, games_played: int, wins: int) -> None:
     conn = db.connect()
-    query = 'Update teams set TeamName = "{}", Conference = "{}", GamesPlayed = {}, Wins = {} where ID = {};'.format(team_name, conference, games_played, wins, team_id)
+    query = 'Update teams set TeamName = "{}", Conference = "{}", GamesPlayed = {}, Wins = {} where TeamID = {};'.format(team_name, conference, games_played, wins, team_id)
     conn.execute(query)
     conn.close()
 
@@ -44,7 +44,7 @@ def insert_new_team(team_name: str, conference: str, games_played: int, wins: in
 def remove_team_by_id(team_id: int) -> None:
     """ remove entries based on task ID """
     conn = db.connect()
-    query = 'Delete From teams where ID={};'.format(team_id)
+    query = 'Delete From teams where TeamID={};'.format(team_id)
     conn.execute(query)
     conn.close()
 

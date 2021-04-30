@@ -121,6 +121,6 @@ def insert_new_task(text: str, userid: str) ->  None:
 def remove_task_by_id(task_id: int) -> None:
     """ remove entries based on task ID """
     conn = db.connect()
-    query = 'Delete From Brackets where BracketID={};'.format(task_id)
+    query = 'Delete From brackets where BracketID={};'.format(task_id)
     conn.execute(query)
     conn.close()

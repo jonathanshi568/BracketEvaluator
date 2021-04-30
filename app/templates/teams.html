@@ -32,6 +32,14 @@
 
 <body>
 
+  <div class="topnav">
+    <a href="/">Home</a>
+    <a href="/teams">Teams</a>
+    <a href="/dan">Matches</a>
+    <a href="/gene">Brackets</a>
+    <a href="/predictions">Predictions</a>
+  </div>
+
   <main role="main" class="container extra-bottom">
     <h1 class="mt-5">NCAA Teams</h1>
   </main>
@@ -55,7 +63,7 @@
 
           <div class="modal-body">
             <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
-            <form action="http://localhost:5000/teams/create" method="post" target="dummyframe">
+            <form action="/teams/create" method="post" target="dummyframe">
               <p>Team Name:</p>
               <p><input type="text" name="team-name" /></p>
               <p>Conference:</p>
@@ -81,7 +89,7 @@
 
           <div class="modal-body">
             <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
-            <form action="http://localhost:5000/teams/edit" method="post" target="dummyframe">
+            <form action="/teams/edit" method="post" target="dummyframe">
               <p>Team ID:</p>
               <p><input type="number" name="team-id" id="team-id-input" /></p>
               <p>Team Name:</p>
@@ -129,7 +137,7 @@
 
           <td>
             <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
-            <form action="http://localhost:5000/teams/delete/{{team.id}}" method="post" target="dummyframe">
+            <form action="/delete/{{team.id}}" method="post" target="dummyframe">
               <button class="btn btn-outline-secondary btn-sm remove" data-source="{{team.id}}" type="submit">
                 <i class="fa fa-trash fa-1" aria-hidden="true"></i>
               </button>
