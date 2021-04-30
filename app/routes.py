@@ -118,4 +118,30 @@ def zupsets():
     results = cur.fetchall()
     return render_template('zuhairupsets.html', upsets = results)
 
+@app.route("/sp1", methods = ['POST'])
+def sp1():
+    cur = mysql.connection.cursor()
+    cur.callproc('sp',[1])
+    results = cur.fetchall()
+    return render_template('index2dan.html', items=results)
 
+@app.route("/sp2", methods = ['POST'])
+def sp2():
+    cur = mysql.connection.cursor()
+    cur.callproc('sp',[2])
+    results = cur.fetchall()
+    return render_template('index2gene.html', items=results)
+
+@app.route("/sp3", methods = ['POST'])
+def sp3():
+    cur = mysql.connection.cursor()
+    cur.callproc('sp',[3])
+    results = cur.fetchall()
+    return render_template('upsets.html', teams=results)
+
+@app.route("/sp4", methods = ['POST'])
+def sp4():
+    cur = mysql.connection.cursor()
+    cur.callproc('sp',[4])
+    results = cur.fetchall()
+    return render_template('zuhairupsets.html', upsets = results)
