@@ -52,7 +52,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.delete').click(function () {
+    $('.remove').click(function () {
         const remove = $(this)
         $.ajax({
             type: 'POST',
